@@ -22,7 +22,16 @@ body, html {
   }
 }
 .container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+.questions-container {
+  width: 600px;
+  margin: 2em 0;  
+  text-align: center;
+}
+.answers-container {
+  width: 600px;  
 }
