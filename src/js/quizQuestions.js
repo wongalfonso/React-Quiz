@@ -1,4 +1,4 @@
-const QuestionsQuestions = [
+const QuizQuestions = [
   {
     question: "If you are in an intersection and you hear the siren of an emergency vehicle, you should",
     answers: [
@@ -47,4 +47,4 @@ const QuestionsQuestions = [
   }
 ]
 
-export default QuizQuestion;
+export default QuizQuestions;

@@ -28,11 +28,11 @@ module.exports = {
         use: {loader: 'babel-loader'}
       },
       {
-        test: /\.scss?$/,
+        test: /\.scss$/,
         use: [
           {loader: 'style-loader'},
           {loader: 'css-loader'},
-          {loader: 'scss-loader'},
+          {loader: 'sass-loader'},
         ]
       }
     ]
