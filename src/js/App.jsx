@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <div className = 'quiz'>
         <div className="container">
-          <h2>React Quiz</h2>                  
+          <h2>React Quiz</h2>              
         </div>
       </div>
     )
