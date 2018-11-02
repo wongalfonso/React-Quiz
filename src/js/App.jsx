@@ -22,7 +22,9 @@ export default class App extends Component {
       quizLength: 0,
       questionNumber: 1,
       correct: 0,
-      questionsAnswered: 0
+      questionsAnswered: 0,
+      wrongAnswers: [],
+      correctAnswers: []
     }
     this.checkAnswer = this.checkAnswer.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
@@ -38,15 +40,34 @@ export default class App extends Component {
     })
   }
   checkAnswer(e) {    
+    let correctObj = {};  
+    let correctArr = [];  
+    let wrongObj = {};    
+    let wrongArr = [];
     if (e.target.value === this.state.correctAnswer) {
+      correctObj.question = this.state.question;
+      correctObj.answer = this.state.correctAnswer;
+      this.state.correctAnswers.map((correct) => {
+        correctArr.push(correct);
+      })      
+      correctArr.push(correctObj);
       this.setState({
         message: "CORRECT !",
         messageClass: 'message message-correct',        
+        correctAnswers: correctArr
       })
     } else {
+      wrongObj.question = this.state.question;
+      wrongObj.yourAnswer = e.target.value;
+      wrongObj.correctAnswer = this.state.correctAnswer;
+      this.state.wrongAnswers.map((wrong) => {
+        wrongArr.push(wrong);
+      })
+      wrongArr.push(wrongObj);
       this.setState({
         message: "WRONG !",
-        messageClass: 'message message-wrong'
+        messageClass: 'message message-wrong',
+        wrongAnswers: wrongArr
       })
     }
     if(e.target.checked === true) {
@@ -79,38 +100,76 @@ export default class App extends Component {
       inputs[i].checked = false;
     }
   }
-
-  render() {   
-    console.log(this.state.step);     
+  renderQuiz() {
     return (
-      <div className = 'quiz'>
-        <div className="quiz-header">
-          React Quiz
-        </div>
-        <div className="container">  
-          <QuizCounter
-            total = {this.state.quizLength}
-            current = {this.state.questionNumber}
-          />        
-          <QuizQuestions
-            question = {this.state.question}
-            />
-          <QuizAnswers
-            answers = {this.state.answers}  
-            checked = {this.state.checked}        
-            check = {this.checkAnswer}
-          />
-          <div className = {this.state.messageClass}>{this.state.message}</div>   
-          <NextButton 
-            checked = {this.state.checked}
-            next = {this.nextQuestion}
-          />   
-          <CorrectCounter
-            number = {this.state.questionsAnswered}
-            correct = {this.state.correct}
-          />     
-        </div>
+    <div className = 'quiz'>
+      <div className="quiz-header">
+        React Quiz
       </div>
+      <div className="container">  
+        <QuizCounter
+          total = {this.state.quizLength}
+          current = {this.state.questionNumber}
+        />        
+        <QuizQuestions
+          question = {this.state.question}
+          />
+        <QuizAnswers
+          answers = {this.state.answers}  
+          checked = {this.state.checked}        
+          check = {this.checkAnswer}
+        />
+        <div className = {this.state.messageClass}>{this.state.message}</div>   
+        <NextButton 
+          checked = {this.state.checked}
+          next = {this.nextQuestion}
+        />   
+        <CorrectCounter
+          number = {this.state.questionsAnswered}
+          correct = {this.state.correct}
+        />     
+      </div>
+    </div>
+    )
+  }
+  renderAnswers() {
+    return (
+      <div>
+        <div>You got these answers right</div>
+        <table>
+          <tbody>
+            {this.state.correctAnswers.map((correct, i) => {
+              return (
+                <tr key = {i}>
+                  <td>{correct.question}</td>              
+                  <td>{correct.answer}</td>
+                </tr>              
+              )
+            })}
+          </tbody>
+        </table>
+        <div>You got these answers wrong</div>
+        <table>
+          <tbody>
+            {this.state.wrongAnswers.map((wrong, i) => {
+              return (
+                <tr key = {i}>
+                  <td>{wrong.question}</td>
+                  <td>{wrong.yourAnswer}</td>
+                  <td>{wrong.correctAnswer}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+  render() {  
+    console.log(this.state.correctAnswers);        
+    // console.log(this.state.wrongAnswers);
+    return (
+      (this.state.step + 2 > this.state.quizLength) ? this.renderAnswers() : this.renderQuiz()
     )
   }
 }
