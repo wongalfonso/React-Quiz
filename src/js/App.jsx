@@ -41,8 +41,7 @@ export default class App extends Component {
     if (e.target.value === this.state.correctAnswer) {
       this.setState({
         message: "CORRECT !",
-        messageClass: 'message message-correct',
-        correct: this.state.correct + 1
+        messageClass: 'message message-correct',        
       })
     } else {
       this.setState({
@@ -57,8 +56,12 @@ export default class App extends Component {
 
   nextQuestion(e) {
     e.preventDefault();
-    const arr = [];
+    let arr = []; 
     quiz[this.state.step + 1].answers.map((answer) => arr.push(answer.content))
+    let correctTotal = this.state.correct;
+    if (this.state.message == "CORRECT !") {
+      correctTotal = correctTotal + 1;
+      }     
     this.setState({
       question: quiz[this.state.step + 1].question,
       answers: arr,
@@ -68,7 +71,8 @@ export default class App extends Component {
       message: '',
       messageClass: 'message',
       questionNumber: this.state.step + 2,
-      questionsAnswered: this.state.questionsAnswered + 1
+      questionsAnswered: this.state.questionsAnswered + 1,
+      correct : correctTotal
     })
     let inputs = document.getElementsByClassName('answer-inputs');
     for (let i = 0; i < inputs.length; i ++) {

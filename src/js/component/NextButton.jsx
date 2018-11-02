@@ -5,7 +5,7 @@ const NextButton = ({checked, next}) => {
 
   const buttonRender = () => {
     return (
-      <button className = 'next-button' onClick = {next}>Next</button>
+      <button className = 'next-button next-button-active' onClick = {next}>Next</button>
     )
   }
 

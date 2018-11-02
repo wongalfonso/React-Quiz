@@ -61,22 +61,25 @@ body, html {
   font-size: 1.1em;
   border-radius: 8px;
   margin-top: 1em;  
+  color: black;
+  background-color: rgb(2, 148, 2);
 }
-.message-correct {
+  .next-button-active:hover {
+    background-color: rgb(1, 184, 1);
+  }
+.message {
   width: 500px;
   height: 35px;
-  background-color: rgba(0, 255, 0, 0.4); 
-  text-align: center;
-  font-size: 2em;
-  color: #006f00;
-}
-.message-wrong {
-  width: 500px;
-  height: 35px;
-  background-color: rgb(255, 0, 0); 
-  text-align: center;
   font-size: 2em;
   color: #ffffff;
+  text-align: center;
+}
+.message-correct {
+  background-color: rgba(0, 255, 0, 0.4); 
+  color: #006f00;
+}
+.message-wrong {  
+  background-color: rgb(255, 0, 0);     
 }
 .counter-text {  
   
