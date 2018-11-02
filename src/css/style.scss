@@ -95,7 +95,42 @@ body, html {
   font-weight: bold;
   text-align: center;
   .percentage {
-    margin-top: 1em;    
-    color: green;
+    margin-top: 1em;        
   }
+  .percentage-passing {
+    color: rgb(2, 108, 2);
+  }
+  .percentage-failing {
+    color: rgb(186, 3, 3);
+  }
+}
+
+.all-answers {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.5em;
+  .all-answers-percentage {
+    font-size: 1.4em;
+  }
+  .all-answers-header {
+    flex:1;
+    margin: 1em 0;
+    font-size: 1.4em;
+  }
+}
+
+.table-body {
+  margin-bottom: 1em;
+  .question {
+    font-weight: bold;
+    margin-bottom: .5em;
+  }
+}
+.correct-answer {
+  color: green;
+}
+.wrong-answer {
+  color: red;
 }

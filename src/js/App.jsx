@@ -100,7 +100,7 @@ export default class App extends Component {
       inputs[i].checked = false;
     }
   }
-  renderQuiz() {
+  renderQuiz() {    
     return (
     <div className = 'quiz'>
       <div className="quiz-header">
@@ -133,43 +133,42 @@ export default class App extends Component {
     )
   }
   renderAnswers() {
+    let percentage = (this.state.correct/this.state.questionsAnswered) * 100;
+    percentage = parseInt(percentage);
     return (
-      <div>
-        <div>You got these answers right</div>
-        <table>
-          <tbody>
+      <div className = 'all-answers'>
+        <div className = 'ass-answers-percentage'>You Scored a {percentage}%</div>
+        <div className = 'all-answers-header'>You got these answers right
+        </div>
+        <div className = 'correct-table'>          
             {this.state.correctAnswers.map((correct, i) => {
               return (
-                <tr key = {i}>
-                  <td>{correct.question}</td>              
-                  <td>{correct.answer}</td>
-                </tr>              
+                <div className = 'table-body' key = {i}>
+                  <div className = 'question'>{correct.question}</div>
+                  <div>Your Answer: <span className = 'correct-answer'>{correct.answer}</span></div>
+                </div>     
               )
-            })}
-          </tbody>
-        </table>
-        <div>You got these answers wrong</div>
-        <table>
-          <tbody>
+            })}    
+        </div>   
+        <div className = 'all-answers-header'>You got these answers wrong</div>
+        <div className = 'wrong-table'>          
             {this.state.wrongAnswers.map((wrong, i) => {
               return (
-                <tr key = {i}>
-                  <td>{wrong.question}</td>
-                  <td>{wrong.yourAnswer}</td>
-                  <td>{wrong.correctAnswer}</td>
-                </tr>
+                <div className = 'table-body' key = {i}>
+                  <div className = 'question'>{wrong.question}</div>
+                  <div>You Selected: <span className = 'wrong-answer'></span>{wrong.yourAnswer}</div>
+                  <div className = 'correct-answer'>{wrong.correctAnswer}</div>                  
+                </div>
               )
-            })}
-          </tbody>
-        </table>
+            })}          
+        </div>
       </div>
     )
   }
   render() {  
-    console.log(this.state.correctAnswers);        
-    // console.log(this.state.wrongAnswers);
+    console.log(this.state.step + 1);
     return (
-      (this.state.step + 2 > this.state.quizLength) ? this.renderAnswers() : this.renderQuiz()
+      (this.state.step + 1 > this.state.quizLength) ? this.renderAnswers() : this.renderQuiz()
     )
   }
 }
