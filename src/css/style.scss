@@ -28,26 +28,33 @@ body, html {
   padding: 30px;
 }
 .questions-container {
-  width: 600px;
+  flex: 1;
+  max-width: 600px;
   margin: 2em 0;  
   text-align: center;
 }
 .answers-container {
-  width: 500px;  
+  max-width: 500px;  
   .answer {
-    margin-bottom: 1em;    
+    display: flex;
+    margin-bottom: 1em;
+    .form-group {
+      flex:1;
+    }
+    label {
+      flex: 9;
+    }  
   }
 }
 .answer-inputs {
   margin: 0 1em;
 }
 .next-button {
-  width: 100px;  
+  width: 200px;  
   padding: 10px;
   font-size: 1.1em;
   border-radius: 8px;
-  margin-top: 1em;
-  margin-left: 450px;
+  margin-top: 1em;  
 }
 .message-correct {
   width: 500px;

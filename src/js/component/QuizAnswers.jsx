@@ -9,10 +9,10 @@ const QuizAnswers = ({answers, check, checked}) => {
         {answers.map((answer, i) => {
           return (
             <div key = {i} className = 'answer'>
-              <label>
+              <div className = 'form-group'>
                 <input type = 'radio' value = {answer} onChange = {check} className = 'answer-inputs'/>
-              {answer}
-              </label>            
+              </div>            
+              <label>{answer}</label>            
             </div>
           )
         })}    
@@ -25,8 +25,8 @@ const QuizAnswers = ({answers, check, checked}) => {
         {answers.map((answer, i) => {
           return (
             <div key = {i} className = 'answer'>
+              <input type = 'radio' value = {answer} className = 'answer-inputs' disabled/>
               <label>
-                <input type = 'radio' value = {answer} className = 'answer-inputs' disabled/>
               {answer}
               </label>            
             </div>
@@ -37,7 +37,9 @@ const QuizAnswers = ({answers, check, checked}) => {
   }
 
   return (  
-    (checked !== true) ? renderQuiz() : disableQuiz() 
+    <div>
+      {(checked !== true) ? renderQuiz() : disableQuiz() }
+    </div>
   )
 }
 
