@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const QuizCounter = ({total, current}) => {
   return (
-    <div>{current} of {total}</div>
+    <div className = 'counter-text'><i>Question <span className = 'counter'>{current}</span> of {total}</i></div>
   )
 }
 

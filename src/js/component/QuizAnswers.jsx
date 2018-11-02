@@ -25,10 +25,10 @@ const QuizAnswers = ({answers, check, checked}) => {
         {answers.map((answer, i) => {
           return (
             <div key = {i} className = 'answer'>
-              <input type = 'radio' value = {answer} className = 'answer-inputs' disabled/>
-              <label>
-              {answer}
-              </label>            
+              <div className = 'form-group'>
+                <input type = 'radio' value = {answer} className = 'answer-inputs' disabled/>
+              </div>            
+              <label>{answer}</label>            
             </div>
           )
         })}    

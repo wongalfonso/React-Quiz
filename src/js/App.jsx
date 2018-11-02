@@ -3,6 +3,7 @@ import QuizQuestions from './component/QuizQuestions';
 import QuizAnswers from './component/QuizAnswers';
 import NextButton from './component/NextButton';
 import QuizCounter from './component/QuizCounter';
+import CorrectCounter from './component/CorrectCounter';
 import quiz from './quizQuestions.js';
 import '../css/style.scss';
 
@@ -20,7 +21,8 @@ export default class App extends Component {
       checked: false, 
       quizLength: 0,
       questionNumber: 1,
-      correct: 0
+      correct: 0,
+      questionsAnswered: 0
     }
     this.checkAnswer = this.checkAnswer.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
@@ -65,7 +67,8 @@ export default class App extends Component {
       checked : false,
       message: '',
       messageClass: 'message',
-      questionNumber: this.state.step + 2
+      questionNumber: this.state.step + 2,
+      questionsAnswered: this.state.questionsAnswered + 1
     })
     let inputs = document.getElementsByClassName('answer-inputs');
     for (let i = 0; i < inputs.length; i ++) {
@@ -74,7 +77,7 @@ export default class App extends Component {
   }
 
   render() {   
-     console.log(this.state.step);
+    console.log(this.state.step);     
     return (
       <div className = 'quiz'>
         <div className="quiz-header">
@@ -97,7 +100,11 @@ export default class App extends Component {
           <NextButton 
             checked = {this.state.checked}
             next = {this.nextQuestion}
-          />        
+          />   
+          <CorrectCounter
+            number = {this.state.questionsAnswered}
+            correct = {this.state.correct}
+          />     
         </div>
       </div>
     )

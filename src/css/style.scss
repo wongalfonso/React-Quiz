@@ -12,11 +12,13 @@ body, html {
 .quiz {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  border-left: 20px solid #505050;
+  border-right: 20px solid #505050;
   .quiz-header {
     background-color: rgba(255, 255, 255, 0.4);
     text-align: center;
-    font-size: 2.5em;
-    margin-top: 1em;
+    font-size: 2.5em;    
     padding: 30px;
     font-weight: bold;
   }
@@ -26,6 +28,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   padding: 30px;
+  background-color: chocolate;
 }
 .questions-container {
   flex: 1;
@@ -49,8 +52,11 @@ body, html {
 .answer-inputs {
   margin: 0 1em;
 }
+.answer-inputs:hover {
+  background: #505050;
+}
 .next-button {
-  width: 200px;  
+  width: 300px;  
   padding: 10px;
   font-size: 1.1em;
   border-radius: 8px;
@@ -67,8 +73,26 @@ body, html {
 .message-wrong {
   width: 500px;
   height: 35px;
-  background-color: rgba(245, 111, 111, .4); 
+  background-color: rgb(255, 0, 0); 
   text-align: center;
   font-size: 2em;
-  color: #f70000;
+  color: #ffffff;
+}
+.counter-text {  
+  
+  font-size: 1.5em;
+  font-weight: bold;
+  .counter {
+    color: white;
+  }
+}
+.correct-counter {
+  margin: 1em 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  .percentage {
+    margin-top: 1em;    
+    color: green;
+  }
 }
