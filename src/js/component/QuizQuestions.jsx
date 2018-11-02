@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const QuizQuestions = ({question}) => {
@@ -7,6 +8,10 @@ const QuizQuestions = ({question}) => {
       <h3>{question}</h3>
     </div>
   )
+}
+
+QuizQuestions.propTypes = {
+  question: PropTypes.string.isRequired
 }
 
 export default QuizQuestions;
