@@ -166,7 +166,7 @@ export default class App extends Component {
               return (
                 <div className = 'table-body' key = {i}>
                   <div className = 'question'>{wrong.question}</div>
-                  <div>You Selected: <span className = 'wrong-answer'></span>{wrong.yourAnswer}</div>
+                  <div>You Selected: <span className = 'wrong-answer'>{wrong.yourAnswer}</span></div>
                   <div className = 'correct-answer'>{wrong.correctAnswer}</div>                  
                 </div>
               )
