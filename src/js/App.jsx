@@ -78,16 +78,26 @@ export default class App extends Component {
   nextQuestion(e) {
     e.preventDefault();
     let arr = []; 
-    quiz[this.state.step + 1].answers.map((answer) => arr.push(answer.content))
+    let step = this.state.step + 1;
+    let question, correctAnswer;
+    if (this.state.questionNumber >= this.state.quizLength) {      
+      arr = [];
+      question = '';
+      correctAnswer = '';
+    } else {
+      quiz[step].answers.map((answer) => arr.push(answer.content))
+      question = quiz[step].question;
+      correctAnswer = quiz[step].correctAnswer;
+    }
     let correctTotal = this.state.correct;
     if (this.state.message == "CORRECT !") {
       correctTotal = correctTotal + 1;
-      }     
+      }           
     this.setState({
-      question: quiz[this.state.step + 1].question,
+      step: step,
+      question: question,
       answers: arr,
-      step: this.state.step + 1,
-      correctAnswer: quiz[this.state.step + 1].correctAnswer,
+      correctAnswer: correctAnswer,
       checked : false,
       message: '',
       messageClass: 'message',
@@ -166,9 +176,9 @@ export default class App extends Component {
     )
   }
   render() {  
-    console.log(this.state.step + 1);
+    const { quizLength, questionNumber, step} = this.state;    
     return (
-      (this.state.step + 1 > this.state.quizLength) ? this.renderAnswers() : this.renderQuiz()
+      (questionNumber > quizLength) ? this.renderAnswers() : this.renderQuiz()
     )
   }
 }
